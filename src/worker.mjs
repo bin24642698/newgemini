@@ -77,13 +77,7 @@ async function handleCompletions (request, apiKey) {
   const response = await fetch(OPENAI_API_URL, {
     method: "POST",
     headers: makeHeaders(apiKey, {
-      "Content-Type": "application/json",
-      ...Object.fromEntries(
-        [...request.headers.entries()].filter(([key]) =>
-          key.toLowerCase() !== "authorization" &&
-          key.toLowerCase() !== "host"
-        )
-      )
+      "Content-Type": "application/json"
     }),
     body: request.body,
   });
