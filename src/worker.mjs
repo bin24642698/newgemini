@@ -61,13 +61,6 @@ const handleOPTIONS = async () => {
 const OPENAI_API_URL = "https://api.ai-wave.org/v1/chat/completions";
 const MODELS_API_URL = "https://api.ai-wave.org/v1/models";
 
-// 强制IPv4解析配置
-const FETCH_OPTIONS = {
-  cf: {
-    resolveOverride: "ipv4"
-  }
-};
-
 const makeHeaders = (apiKey, more) => ({
   ...(apiKey && { "Authorization": `Bearer ${apiKey}` }),
   ...more
@@ -75,8 +68,7 @@ const makeHeaders = (apiKey, more) => ({
 
 async function handleModels (apiKey) {
   const response = await fetch(MODELS_API_URL, {
-    headers: makeHeaders(apiKey),
-    ...FETCH_OPTIONS
+    headers: makeHeaders(apiKey)
   });
   return new Response(response.body, fixCors(response));
 }
@@ -87,8 +79,7 @@ async function handleCompletions (request, apiKey) {
     headers: makeHeaders(apiKey, {
       "Content-Type": "application/json"
     }),
-    body: request.body,
-    ...FETCH_OPTIONS
+    body: request.body
   });
 
   return new Response(response.body, fixCors(response));
