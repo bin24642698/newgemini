@@ -62,7 +62,7 @@ const handleOPTIONS = async () => {
   });
 };
 
-const BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai";
+const BASE_URL = "https://api.ai-wave.org/v1";
 
 const makeHeaders = (apiKey, more) => ({
   "Authorization": `Bearer ${apiKey}`,
